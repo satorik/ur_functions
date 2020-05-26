@@ -1,6 +1,6 @@
 const Character = (sequelize, DataTypes ) => {
   return sequelize.define('character', {
-  name_rus: {
+  name_RUS: {
     type: DataTypes.STRING(200), 
     allowNull: false,
     validate:{
@@ -14,7 +14,7 @@ const Character = (sequelize, DataTypes ) => {
       }
     }
   },
-  name_eng: {
+  name_ENG: {
     type: DataTypes.STRING(200), 
     allowNull: true,
     validate:{
@@ -24,7 +24,7 @@ const Character = (sequelize, DataTypes ) => {
       }
     }
   },
-  name_orig: {
+  name_ORIG: {
     type: DataTypes.STRING(200), 
     allowNull: true,
     validate:{
@@ -34,7 +34,17 @@ const Character = (sequelize, DataTypes ) => {
       }
     }
   },
-  main: {type: DataTypes.BOOLEAN}
+  isMain: {type: DataTypes.BOOLEAN},
+  isGeneralName: {type: DataTypes.BOOLEAN},
+  isSecondaryName:{type: DataTypes.BOOLEAN},
+  tip_RU: {
+    type: DataTypes.STRING(1000), 
+    allowNull: true,
+  },
+  tip_ENG: {
+    type: DataTypes.STRING(1000), 
+    allowNull: true,
+  },
   }
   )}
 

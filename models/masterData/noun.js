@@ -1,6 +1,6 @@
 const Noun = (sequelize, DataTypes ) => {
   return sequelize.define('noun', {
-  name_rus: {
+  name_RUS: {
     type: DataTypes.STRING(200), 
     allowNull: false,
     validate:{
@@ -14,7 +14,7 @@ const Noun = (sequelize, DataTypes ) => {
       }
     }
   },
-  name_eng: {
+  name_ENG: {
     type: DataTypes.STRING(200), 
     allowNull: true,
     validate:{

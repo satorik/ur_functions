@@ -16,6 +16,7 @@ const sequelize = new Sequelize(process.env.db, process.env.user, process.env.pa
 
   const models = {
     fandom: sequelize.import('./masterData/fandom.js'),
+    fandomCategory: sequelize.import('./masterData/category.js'),
     character: sequelize.import('./masterData/character.js'),
     genre: sequelize.import('./masterData/genre.js'),
     location: sequelize.import('./masterData/location.js'),
@@ -31,6 +32,8 @@ const sequelize = new Sequelize(process.env.db, process.env.user, process.env.pa
   
   models.fandom.hasMany(models.character, { onDelete: 'cascade' })
   models.fandom.hasMany(models.location, { onDelete: 'cascade' })
+  models.fandom.hasOne(models.fandomCategory, {as: 'category'})
+  models.character.hasMany(models.character, {as: 'secondaryName'})
 
   models.game.hasMany(models.gameCondition, {as: 'Conditions'})
 

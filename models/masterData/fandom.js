@@ -1,6 +1,6 @@
 const Fandom = (sequelize, DataTypes ) => {
   return sequelize.define('fandom', {
-  name_rus: {
+  name_RUS: {
     type: DataTypes.STRING(200), 
     allowNull: false,
     validate:{
@@ -14,7 +14,7 @@ const Fandom = (sequelize, DataTypes ) => {
       }
     }
   },
-  name_eng: {
+  name_ENG: {
     type: DataTypes.STRING(200), 
     allowNull: true,
     validate:{
@@ -24,7 +24,7 @@ const Fandom = (sequelize, DataTypes ) => {
       }
     }
   },
-  name_orig: {
+  name_ORIG: {
     type: DataTypes.STRING(200), 
     allowNull: true,
     validate:{

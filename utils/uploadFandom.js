@@ -1,34 +1,37 @@
-import { readdirSync } from 'fs'
 import path from 'path'
+import readline from 'readline'
+import fs from 'fs'
 import { models } from '../models'
 import {uploadCharacters, uploadLocation, uploadFandom} from './insertMasterData'
 
-
 const rootPath =  path.resolve(__dirname, '../txt/') 
 
-const getDirectories = source =>
-  readdirSync(source, { withFileTypes: true })
-    .filter(dirent => dirent.isDirectory())
-    .map(dirent => dirent.name)
+const createReadStream = filePath => {
+  const fileStream = fs.createReadStream(filePath)
 
-const syncDir = () => {
-  const fandomDirs = getDirectories(rootPath)
+  return readline.createInterface({
+    input: fileStream,
+    crlfDelay: Infinity
+  })
+}
 
-  for (let dir of fandomDirs) {
-    const fandomPath = path.resolve(__dirname, '../txt/', dir)
-    const fandomNamePath = path.resolve(fandomPath, 'fandom.txt')
-    const characterPath = path.resolve(fandomPath, 'characters.txt')
-    const locationPath = path.resolve(fandomPath, 'locations.txt')
-
-    uploadFandom(models, fandomNamePath, '').then (res => {
-      console.log('uploadFandom', res.dataValues.id)
-      uploadCharacters(models, characterPath, res.dataValues.id)
-      uploadLocation(models, locationPath, res.dataValues.id)
-    })
-
+const readFandomFile = async filePath => {
+  const fandoms = []
+  for await (const line of createReadStream(filePath)) {
+    const fandomLine = line.split(',')
+    if (fandomLine[6] === '1') fandoms.push(fandomLine) 
   }
 
+  return fandoms
+}
 
+const syncDir = async () => {
+
+  const fandomPath = path.resolve(rootPath, 'fandoms.csv')
+
+  const fandomsArray = await readFandomFile(fandomPath)
+
+  console.log('uploadFandom', fandomsArray)
 }    
 
 export default syncDir

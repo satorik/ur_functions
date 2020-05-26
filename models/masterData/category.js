@@ -1,5 +1,5 @@
-const Location = (sequelize, DataTypes ) => {
-  return sequelize.define('location', {
+const Category = (sequelize, DataTypes ) => {
+  return sequelize.define('fandomCategory', {
   name_RUS: {
     type: DataTypes.STRING(200), 
     allowNull: false,
@@ -37,4 +37,4 @@ const Location = (sequelize, DataTypes ) => {
   }
   )}
 
-  export default Location
+  export default Category
