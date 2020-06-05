@@ -23,17 +23,7 @@ const Category = (sequelize, DataTypes ) => {
           msg:"Maximum 200 characters"
       }
     }
-  },
-  name_ORIG: {
-    type: DataTypes.STRING(200), 
-    allowNull: true,
-    validate:{
-      len:{
-          args:[1, 100],
-          msg:"Maximum 200 characters"
-      }
-    }
-  },
+  }
   }
   )}
 

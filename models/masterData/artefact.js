@@ -1,5 +1,5 @@
-const Location = (sequelize, DataTypes ) => {
-  return sequelize.define('location', {
+const Artefact = (sequelize, DataTypes ) => {
+  return sequelize.define('artefact', {
   name_RUS: {
     type: DataTypes.STRING(200), 
     allowNull: false,
@@ -34,7 +34,11 @@ const Location = (sequelize, DataTypes ) => {
       }
     }
   },
+  artefactType:{
+    type: DataTypes.STRING(200), 
+    allowNull: false,
+  } 
   }
   )}
 
-  export default Location
+  export default Artefact

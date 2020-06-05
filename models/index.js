@@ -17,9 +17,10 @@ const sequelize = new Sequelize(process.env.db, process.env.user, process.env.pa
   const models = {
     fandom: sequelize.import('./masterData/fandom.js'),
     fandomCategory: sequelize.import('./masterData/category.js'),
+    adaptationType: sequelize.import('./masterData/adaptationType.js'),
     character: sequelize.import('./masterData/character.js'),
     genre: sequelize.import('./masterData/genre.js'),
-    location: sequelize.import('./masterData/location.js'),
+    artefact: sequelize.import('./masterData/artefact.js'),
     raiting: sequelize.import('./masterData/raiting.js'),
     trop: sequelize.import('./masterData/trop.js'),
     noun: sequelize.import('./masterData/noun.js'),
@@ -31,9 +32,11 @@ const sequelize = new Sequelize(process.env.db, process.env.user, process.env.pa
   }
   
   models.fandom.hasMany(models.character, { onDelete: 'cascade' })
-  models.fandom.hasMany(models.location, { onDelete: 'cascade' })
-  models.fandom.hasOne(models.fandomCategory, {as: 'category'})
-  models.character.hasMany(models.character, {as: 'secondaryName'})
+  models.fandom.hasMany(models.artefact, { onDelete: 'cascade' })
+  models.adaptationType.hasMany(models.fandom, {as: 'adaptationType'})
+  models.fandom.hasOne(models.fandom, {as: 'fandom'})
+  models.fandomCategory.hasMany(models.adaptationType, {as: 'category'})
+  models.character.hasMany(models.character, {as: 'mainCharacter'})
 
   models.game.hasMany(models.gameCondition, {as: 'Conditions'})
 

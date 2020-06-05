@@ -1,5 +1,5 @@
-const Fandom = (sequelize, DataTypes ) => {
-  return sequelize.define('fandom', {
+const AdaptationType = (sequelize, DataTypes ) => {
+  return sequelize.define('adaptationType', {
   name_RUS: {
     type: DataTypes.STRING(200), 
     allowNull: false,
@@ -23,20 +23,8 @@ const Fandom = (sequelize, DataTypes ) => {
           msg:"Maximum 200 characters"
       }
     }
-  },
-  name_ORIG: {
-    type: DataTypes.STRING(200), 
-    allowNull: true,
-    validate:{
-      len:{
-          args:[1, 100],
-          msg:"Maximum 200 characters"
-      }
-    }
-  },
-  isAdaptation: {type: DataTypes.BOOLEAN},
-  isFandom: {type: DataTypes.BOOLEAN},
+  }
   }
   )}
 
-  export default Fandom
+  export default AdaptationType
